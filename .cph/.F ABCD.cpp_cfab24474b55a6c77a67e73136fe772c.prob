@@ -1,0 +1,1 @@
+{"name":"Local: F ABCD","url":"c:\\Users\\Miguel\\Projects\\Codeforces\\F ABCD.cpp","tests":[{"id":1758996244384,"input":"6\n-45 22 42 -16\n-41 -27 56 30\n-36 53 -37 77\n-36 30 -75 -46\n26 -38 -10 62\n-32 -54 -6 45","output":"5"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\Miguel\\Projects\\Codeforces\\F ABCD.cpp","group":"local","local":true}

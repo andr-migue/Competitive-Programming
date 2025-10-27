@@ -1,0 +1,1 @@
+{"name":"Local: A- Virtual Friends","url":"c:\\Users\\Miguel\\Projects\\Codeforces\\A- Virtual Friends.cpp","tests":[{"id":1758991105346,"input":"2\n3\nA B\nB C\nC D\n2\nA B\nB C\n","output":"2\n3\n4"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\Miguel\\Projects\\Codeforces\\A- Virtual Friends.cpp","group":"local","local":true}

@@ -1,0 +1,1 @@
+{"name":"Local: a","url":"c:\\Users\\Miguel\\Projects\\Codeforces\\a.cpp","tests":[{"id":1759002468780,"input":"1\n3\nFred Barney\nBarney Betty\nBetty Wilma","output":"2\n3\n4"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\Miguel\\Projects\\Codeforces\\a.cpp","group":"local","local":true}
