@@ -9,7 +9,7 @@ int solve(vector<int> A, int n, int l, int r)
 
     for (int i = 0; i < n; i++)
     {
-        ans += distance(ms.begin(), ms.lower_bound(A[i] - l)); // ans += ms.Rank(A[i] - l);
+        ans += distance(ms.begin(), ms.lower_bound(A[i] - l + 1)); // ans += ms.Rank(A[i] - l + 1);
         ms.insert(-A[i] - r);
     }
 
@@ -18,7 +18,7 @@ int solve(vector<int> A, int n, int l, int r)
 
 signed main()
 {
-    vector<int> A = {1, 8};
+    vector<int> A = {1, 8, 5, 6, 7, 7,7,7 ,9};
 
     cout << solve(A, A.size(), 2, 10);
 }

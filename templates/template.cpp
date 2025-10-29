@@ -5,18 +5,9 @@ using namespace std;
 #define int long long
 #define size(x) (long long)(x.size())
 #define mid(l, r) ((l + r) / 2)
-#define forn(i, a, n) for (int i = a; i < n; i++)
 #define sort(v) sort(v.begin(), v.end())
 #define reverse(v) sort(v.rbegin(), v.rend())
 
-typedef long long ll;
-typedef vector<int> vi;
-typedef vector<bool> vb;
-typedef vector<string> vs;
-typedef set<int> si;
-typedef pair<int, int> pii;
-typedef vector<pii> vpii;
-typedef vector<vi> vvi;
 typedef priority_queue<int, vector<int>, greater<int>> minHeap;
 typedef priority_queue<int> maxHeap;
 
@@ -33,6 +24,11 @@ int mcd(int a, int b)
     }
 
     return a;
+}
+
+bool coprimes(int a, int b)
+{
+    return mcd(a, b) == 1;
 }
 
 int modpow(int base, int exp, int mod)
