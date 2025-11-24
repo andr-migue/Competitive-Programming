@@ -13,9 +13,19 @@ public:
     trie()
     {
         nodes = 1;
-        tree.assign(1, vector<int>(26, -1));
+        tree.assign(1, vector<int>(52, -1));
         end.assign(1, false);
         count.assign(1, 0);
+    }
+
+    int getIndex(char c)
+    {
+        if (c >= 'a' && c <= 'z')
+            return c - 'a'; // 0-25 para minúsculas
+        else if (c >= 'A' && c <= 'Z')
+            return c - 'A' + 26; // 26-51 para mayúsculas
+        else
+            return -1; // Carácter inválido
     }
 
     void insert(string word)
@@ -24,12 +34,15 @@ public:
 
         for (char c : word)
         {
-            int index = c - 'a';
+            int index = getIndex(c);
+
+            if (index < 0 || index >= 52)
+                continue;
 
             if (tree[current][index] == -1)
             {
                 tree[current][index] = nodes;
-                tree.resize(nodes + 1, vector<int>(26, -1));
+                tree.resize(nodes + 1, vector<int>(52, -1));
                 end.resize(nodes + 1, false);
                 count.resize(nodes + 1, 0);
                 nodes++;
@@ -48,9 +61,9 @@ public:
 
         for (char c : word)
         {
-            int index = c - 'a';
+            int index = getIndex(c);
 
-            if (tree[current][index] == -1)
+            if (index < 0 || index >= 52 || tree[current][index] == -1)
             {
                 return false;
             }
@@ -67,9 +80,9 @@ public:
 
         for (char c : prefix)
         {
-            int index = c - 'a';
+            int index = getIndex(c);
 
-            if (tree[current][index] == -1)
+            if (index < 0 || index >= 52 || tree[current][index] == -1)
             {
                 return false;
             }
@@ -86,9 +99,9 @@ public:
 
         for (char c : prefix)
         {
-            int index = c - 'a';
+            int index = getIndex(c);
 
-            if (tree[current][index] == -1)
+            if (index < 0 || index >= 52 || tree[current][index] == -1)
             {
                 return 0;
             }
