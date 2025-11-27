@@ -1,24 +1,20 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<int> prefix_function(const std::string &S)
+vector<int> prefix_function(const string &pat)
 {
-    int n = (int)S.size();
+    int n = (int)pat.size();
     vector<int> pi(n);
 
     for (int i = 1; i < n; i++)
     {
         int j = pi[i - 1];
 
-        while (j > 0 && S[i] != S[j])
-        {
+        while (j > 0 && pat[i] != pat[j])
             j = pi[j - 1];
-        }
 
-        if (S[i] == S[j])
-        {
+        if (pat[i] == pat[j])
             j++;
-        }
 
         pi[i] = j;
     }
@@ -35,9 +31,7 @@ int kmp(string pat, string txt)
     for (int i = n + 1; i < pi.size(); i++)
     {
         if (pi[i] == n)
-        {
             ans++;
-        }
     }
 
     return ans;

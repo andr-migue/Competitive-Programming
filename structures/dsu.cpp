@@ -5,6 +5,7 @@ class dsu
 {
 public:
     vector<int> parent, size;
+    stack<tuple<int, int, int>> history;
 
     dsu(int n)
     {
@@ -17,46 +18,73 @@ public:
         }
     }
 
-    int SetOf(int x)
+    int set_of(int x)
     {
         if (parent[x] != x)
         {
-            parent[x] = SetOf(parent[x]);
+            return set_of(parent[x]);
         }
-        return parent[x];
+        return x;
     }
 
-    bool Merge(int x, int y)
+    bool merge(int x, int y)
     {
-        x = SetOf(x);
-        y = SetOf(y);
+        x = set_of(x);
+        y = set_of(y);
 
         if (x == y)
         {
             return false;
         }
 
-        if (size[x] > size[y])
+        if (size[x] < size[y])
         {
-            parent[y] = x;
-            size[x] += size[y];
+            swap(x, y);
         }
-        else
-        {
-            parent[x] = y;
-            size[y] += size[x];
-        }
+
+        history.push({y, parent[y], size[x]});
+
+        parent[y] = x;
+        size[x] += size[y];
 
         return true;
     }
 
-    bool Same(int x, int y)
+    void undo()
     {
-        return SetOf(x) == SetOf(y);
+        if (history.size() == 0)
+        {
+            return;
+        }
+
+        auto [y, parent_y, size_x] = history.top();
+        history.pop();
+
+        int x = parent[y];
+        parent[y] = parent_y;
+        size[x] = size_x;
     }
 
-    int GetSize(int x)
+    int checkpoint()
     {
-        return size[SetOf(x)];
+        return history.size();
+    }
+
+    void rollback(int checkpoint)
+    {
+        while ((int)history.size() > checkpoint)
+        {
+            undo();
+        }
+    }
+
+    bool same(int x, int y)
+    {
+        return set_of(x) == set_of(y);
+    }
+
+    int get_size(int x)
+    {
+        return size[set_of(x)];
     }
 };

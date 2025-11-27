@@ -1,54 +1,49 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+typedef priority_queue<int, vector<int>, greater<int>> minHeap;
+typedef priority_queue<int> maxHeap;
+
 class online_median
 {
 private:
-    priority_queue<int> maxHeap;                            
-    priority_queue<int, vector<int>, greater<int>> minHeap; 
+    maxHeap left;
+    minHeap right;
 
     void balance()
     {
-        if (maxHeap.size() > minHeap.size() + 1)
+        if (left.size() > right.size() + 1)
         {
-            minHeap.push(maxHeap.top());
-            maxHeap.pop();
+            right.push(left.top());
+            left.pop();
         }
-        else if (minHeap.size() > maxHeap.size())
+        else if (right.size() > left.size())
         {
-            maxHeap.push(minHeap.top());
-            minHeap.pop();
+            left.push(right.top());
+            right.pop();
         }
     }
 
 public:
-    void insert(int value)
+    void insert(int x)
     {
-        if (maxHeap.empty() || value < maxHeap.top())
-        {
-            maxHeap.push(value);
-        }
+        if (left.empty() || x <= left.top())
+            left.push(x);
         else
-        {
-            minHeap.push(value);
-        }
+            right.push(x);
 
         balance();
     }
 
-    double getMedian()
+    int median()
     {
-        if (maxHeap.empty())
-        {
-            return 0;
-        }
-        if (maxHeap.size() > minHeap.size())
-        {
-            return maxHeap.top();
-        }
-        else
-        {
-            return (maxHeap.top() + minHeap.top()) / 2.0;
-        }
+        return left.top();
+    }
+
+    double medianDouble()
+    {
+        if (left.size() > right.size())
+            return left.top();
+        return (left.top() + right.top()) / 2.0;
     }
 };
