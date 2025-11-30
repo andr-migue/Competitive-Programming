@@ -13,7 +13,7 @@ class dsu
 {
 public:
     vector<int> parent, size;
-    stack<tuple<int, int, int>> history; // y, parent[y], size[x]
+    stack<tuple<int, int, int, int>> history; // y, parent[y], size[x], islands
     int islands = 0;
 
     dsu(int n)
@@ -51,7 +51,7 @@ public:
             swap(x, y);
         }
 
-        history.push({y, parent[y], size[x]});
+        history.push({y, parent[y], size[x], islands});
 
         parent[y] = x;
         size[x] += size[y];
@@ -67,12 +67,19 @@ public:
             return;
         }
 
-        auto [y, parent_y, size_x] = history.top();
+        auto [y, parent_y, size_x, _islands] = history.top();
         history.pop();
+
+        if (y == -1)
+        {
+            islands = _islands;
+            return;
+        }
 
         int x = parent[y];
         parent[y] = parent_y;
         size[x] = size_x;
+        islands = _islands;
     }
 
     int checkpoint()
@@ -86,6 +93,12 @@ public:
         {
             undo();
         }
+    }
+
+    void add_island()
+    {
+        history.push({-1, -1, -1, islands});
+        islands++;
     }
 };
 
@@ -119,7 +132,7 @@ signed main()
         {
             if (grid[i][j] == '#')
             {
-                dsu.islands++;
+                dsu.add_island();
 
                 for (int d = 0; d < 4; d++)
                 {
@@ -147,10 +160,9 @@ signed main()
         {
             if (grid[i][j] == '.')
             {
-                int save = dsu.islands;
                 int check = dsu.checkpoint();
 
-                dsu.islands++;
+                dsu.add_island();
 
                 for (int d = 0; d < 4; d++)
                 {
@@ -170,7 +182,6 @@ signed main()
                 }
 
                 dsu.rollback(check);
-                dsu.islands = save;
             }
         }
     }
