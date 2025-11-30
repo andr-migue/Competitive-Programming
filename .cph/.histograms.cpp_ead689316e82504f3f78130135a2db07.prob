@@ -1,0 +1,1 @@
+{"name":"Local: histograms","url":"c:\\Users\\Miguel\\Projects\\Competitive Programming\\histograms.cpp","tests":[{"id":1764294309224,"input":"5 3\n1 2 3 4 5\n1 2 3","output":"3"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\Miguel\\Projects\\Competitive Programming\\histograms.cpp","group":"local","local":true}

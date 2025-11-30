@@ -58,7 +58,7 @@ public:
         return end[node];
     }
 
-    bool startsWith(string &prefix)
+    bool starts_with(string &prefix)
     {
         int node = 0;
 
@@ -75,7 +75,7 @@ public:
         return true;
     }
 
-    int countPrefix(string &prefix)
+    int prefix_query(string &prefix)
     {
         int node = 0;
 
