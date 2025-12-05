@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+
 using namespace std;
 
 vector<int> prefix_function(const string &pat)
@@ -21,7 +22,7 @@ vector<int> prefix_function(const string &pat)
     return pi;
 }
 
-int kmp(string pat, string txt)
+int kmp(const string &pat, const string &txt)
 {
     int ans = 0;
     int n = pat.size();
@@ -32,6 +33,25 @@ int kmp(string pat, string txt)
     {
         if (pi[i] == n)
             ans++;
+    }
+
+    return ans;
+}
+
+vector<int> aps(const string &s)
+{
+    int n = s.size();
+    vector<int> ans;
+    // vector<string> prefixes;
+
+    vector<int> pi = prefix_function(s);
+
+    int len = pi[n - 1];
+    while (len > 0)
+    {
+        ans.push_back(len);
+        // prefixes.push_back(s.substr(0, len));
+        len = pi[len - 1];
     }
 
     return ans;

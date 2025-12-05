@@ -64,6 +64,6 @@ signed main()
     while (tc--)
     {
         solve();
-        cout << '\n';
+        cout << endl;
     }
 }
