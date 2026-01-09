@@ -1,5 +1,14 @@
 #include <bits/stdc++.h>
+
 using namespace std;
+
+#define int long long
+#define mid(l, r) ((l + r) / 2)
+#define sort(v) sort(v.begin(), v.end())
+#define reverse(v) reverse(v.begin(), v.end())
+
+typedef priority_queue<int, vector<int>, greater<int>> minHeap;
+typedef priority_queue<int> maxHeap;
 
 class segment_tree
 {
@@ -25,15 +34,23 @@ public:
         aux_update(1, 0, n - 1, index, value);
     }
 
+    int find_kth_zero(int k)
+    {
+        return find(k, 1, 0, n - 1);
+    }
+
 private:
-    #define operation(a, b) a + b
+#define operation(a, b) a + b
     int neutral = 0;
 
     void build(const vector<int> &arr, int node, int t_left, int t_right)
     {
         if (t_left == t_right)
         {
-            tree[node] = arr[t_left];
+            if (arr[t_left] == 0)
+            {
+                tree[node] = 1;
+            }
             return;
         }
 
@@ -66,7 +83,10 @@ private:
     {
         if (t_left == t_right)
         {
-            tree[node] = value;
+            if (value == 0)
+            {
+                tree[node] = 1;
+            }
             return;
         }
 
@@ -83,4 +103,32 @@ private:
 
         tree[node] = operation(tree[2 * node], tree[2 * node + 1]);
     }
+
+    int find(int k, int node, int t_left, int t_right)
+    {
+        if (k > tree[node])
+            return -1;
+
+        if (t_left == t_right)
+            return t_left;
+
+        int mid = (t_left + t_right) / 2;
+
+        if (tree[2 * node] >= k)
+        {
+            return find(k, 2 * node, t_left, mid);
+        }
+        else
+        {
+            return find(k - tree[2 * node], 2 * node + 1, mid + 1, t_right);
+        }
+    }
 };
+
+signed main()
+{
+    vector<int> arr = {0, 0, 0, 0, 0};
+    segment_tree tree(arr);
+
+    cout << tree.query(0, 4) << " " << tree.find_kth_zero(5);
+}
