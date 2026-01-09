@@ -6,9 +6,6 @@ using namespace std;
 class segment_tree
 {
 public:
-    #define operation(a, b) a + b
-    int neutral = 0;
-
     int n;
     vector<int> tree;
 
@@ -31,6 +28,9 @@ public:
     }
 
 private:
+    #define operation(a, b) a + b
+    int neutral = 0;
+
     void build(const vector<int> &arr, int node, int t_left, int t_right)
     {
         if (t_left == t_right)
