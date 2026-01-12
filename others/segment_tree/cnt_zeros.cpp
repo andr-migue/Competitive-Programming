@@ -107,10 +107,14 @@ private:
     int find(int k, int node, int t_left, int t_right)
     {
         if (k > tree[node])
+        {
             return -1;
+        }
 
         if (t_left == t_right)
+        {
             return t_left;
+        }
 
         int mid = (t_left + t_right) / 2;
 

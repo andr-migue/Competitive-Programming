@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-
+#define int long long
 class segment_tree
 {
 public:
@@ -15,9 +15,9 @@ public:
         build(arr, 1, 0, n - 1);
     }
 
-    int query(int left, int right)
+    int query(int left, int right, int target)
     {
-        return aux_query(1, 0, n - 1, left, right);
+        return aux_query(1, 0, n - 1, left, right, target);
     }
 
     void update(int index, int value)
@@ -26,8 +26,8 @@ public:
     }
 
 private:
-    #define operation(a, b) a + b
-    int neutral = 0;
+#define operation(a, b) max(a, b)
+    int neutral = LLONG_MIN;
 
     void build(const vector<int> &arr, int node, int t_left, int t_right)
     {
@@ -45,21 +45,33 @@ private:
         tree[node] = operation(tree[2 * node], tree[2 * node + 1]);
     }
 
-    int aux_query(int node, int t_left, int t_right, int left, int right)
+    int aux_query(int node, int t_left, int t_right, int left, int right, int target)
     {
         if (right < t_left || t_right < left)
         {
-            return neutral;
+            return -1;
         }
 
-        if (left == t_left && t_right == right)
+        if (target >= tree[node])
         {
-            return tree[node];
+            return -1;
+        }
+
+        if (t_left == t_right)
+        {
+            return t_left;
         }
 
         int mid = (t_left + t_right) / 2;
 
-        return operation(aux_query(2 * node, t_left, mid, left, right), aux_query(2 * node + 1, mid + 1, t_right, left, right));
+        int result = aux_query(2 * node, t_left, mid, left, right, target);
+
+        if (result != -1)
+        {
+            return result;
+        }
+
+        return aux_query(2 * node + 1, mid + 1, t_right, left, right, target);
     }
 
     void aux_update(int node, int t_left, int t_right, int index, int value)
@@ -84,3 +96,11 @@ private:
         tree[node] = operation(tree[2 * node], tree[2 * node + 1]);
     }
 };
+
+signed main()
+{
+    vector<int> arr = {3, 4, 0, 0, 5};
+    segment_tree tree(arr);
+
+    cout << tree.query(3, 4, 3);
+}
