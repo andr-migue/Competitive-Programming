@@ -47,6 +47,7 @@ vector<int> aps(const string &s)
     vector<int> pi = prefix_function(s);
 
     int len = pi[n - 1];
+    
     while (len > 0)
     {
         ans.push_back(len);

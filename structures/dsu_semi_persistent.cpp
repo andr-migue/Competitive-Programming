@@ -5,7 +5,7 @@ class dsu
 {
 public:
     vector<int> parent, size;
-    stack<tuple<int, int, int>> history;
+    stack<tuple<int, int, int>> history; // y, parent[y], size[x]
 
     dsu(int n)
     {
