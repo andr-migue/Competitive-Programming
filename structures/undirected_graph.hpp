@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#include <vector>
 using namespace std;
 
 namespace structures 
@@ -29,7 +30,17 @@ namespace structures
                 list[v].push_back(u);
             }
         }
-    
+
+        vector<int>& operator[](int index)
+        {
+            return list[index];
+        }
+
+        const vector<int>& operator[](int index) const
+        {
+            return list[index];
+        }
+
         int size()
         {
             return n;
@@ -56,7 +67,17 @@ namespace structures
                 matrix[v][u] = 1;
             }
         }
-    
+
+        vector<int>& operator[](int index)
+        {
+            return matrix[index];
+        }
+
+        const vector<int>& operator[](int index) const
+        {
+            return matrix[index];
+        }
+
         int size()
         {
             return n;

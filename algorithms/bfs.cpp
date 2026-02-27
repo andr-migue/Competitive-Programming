@@ -3,9 +3,9 @@
 
 using namespace std;
 
-vector<int> bfs(structures::list_graph &graph, int start)
+void bfs(structures::list_graph &graph, int start)
 {
-    vector<int> dist(graph.n, INT_MAX);
+    vector<int> dist(graph.size(), INT_MAX);
     queue<int> nodes;
     
     dist[start] = 0;
@@ -16,7 +16,7 @@ vector<int> bfs(structures::list_graph &graph, int start)
         int node = nodes.front();
         nodes.pop();
 
-        for (int adj : graph.list[node]) 
+        for (int adj : graph[node]) 
         {
             if (dist[adj] != INT_MAX)
             {
@@ -25,6 +25,4 @@ vector<int> bfs(structures::list_graph &graph, int start)
             }
         }
     }
-
-    return dist;
 }
