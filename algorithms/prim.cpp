@@ -4,7 +4,7 @@
 using namespace std;
 using namespace structures;
 
-ponderaded_list_graph prim_correct(const ponderaded_list_graph& graph, int nodes)
+ponderaded_list_graph prim(const ponderaded_list_graph& graph, int nodes)
 {
     ponderaded_list_graph ans(nodes);
     vector<bool> mask(nodes, false);
