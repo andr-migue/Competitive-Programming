@@ -1,17 +1,18 @@
 #include <bits/stdc++.h>
+#include <tuple>
 #include <vector>
 using namespace std;
 
 namespace structures 
 {
-    class list_graph
+    class ponderaded_list_graph
     {
     public:
         int n;
         int edges;
-        vector<vector<int>> list;
+        vector<vector<tuple<int, int>>> list;
     
-        list_graph(int nodes = 0)
+        ponderaded_list_graph(int nodes = 0)
         {
             n = nodes;
             edges = 0;
@@ -20,26 +21,26 @@ namespace structures
     
         void add()
         {
-            list.push_back(vector<int>());
+            list.push_back(vector<tuple<int, int>>());
             n++;
         }
     
-        void connect(int u, int v)
+        void connect(int u, int v, int w)
         {
             if (u < n && v < n)
             {
-                list[u].push_back(v);
-                list[v].push_back(u);
+                list[u].push_back({v, w});
+                list[v].push_back({u, w});
                 edges++;
             }
         }
 
-        vector<int>& operator[](int index)
+        vector<tuple<int, int>>& operator[](int index)
         {
             return list[index];
         }
 
-        const vector<int>& operator[](int index) const
+        const vector<tuple<int, int>>& operator[](int index) const
         {
             return list[index];
         }
@@ -50,26 +51,26 @@ namespace structures
         }
     };
     
-    class matrix_graph
+    class ponderaded_matrix_graph
     {
     public:
         int n;
         int edges;
         vector<vector<int>> matrix;
     
-        matrix_graph(int nodes)
+        ponderaded_matrix_graph(int nodes)
         {
             n = nodes;
             edges = 0;
             matrix.resize(n, vector<int>(n, 0));
         }
     
-        void connect(int u, int v)
+        void connect(int u, int v, int w)
         {
             if (u < n && v < n)
             {
-                matrix[u][v] = 1;
-                matrix[v][u] = 1;
+                matrix[u][v] = w;
+                matrix[v][u] = w;
                 edges++;
             }
         }

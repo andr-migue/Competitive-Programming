@@ -4,14 +4,15 @@ using namespace std;
 
 namespace structures
 {
-    struct node
-    {
-        int sum, preffix, suffix, ans;
-    };
 
     class segment_tree_struct
     {
     public:
+        struct node
+        {
+            int sum, preffix, suffix, ans;
+        };
+
         int n;
         vector<node> tree;
 

@@ -5,7 +5,7 @@ using namespace std;
 
 bool is_bipartite(structures::list_graph &graph)
 {
-    int n = graph.n;
+    int n = graph.size();
     vector<int> colors(n, 0);
 
     for (int u = 0; u < n; u++) 
@@ -24,7 +24,7 @@ bool is_bipartite(structures::list_graph &graph)
             int node = nodes.front();
             nodes.pop();
 
-            for (int adj : graph.list[node]) 
+            for (int adj : graph[node]) 
             {
                 if (colors[adj] == 0)
                 {
