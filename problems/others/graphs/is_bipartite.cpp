@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-#include "../../structures/undirected_graph.hpp"
+#include "../../../structures/undirected_graph.hpp"
 
 using namespace std;
 
