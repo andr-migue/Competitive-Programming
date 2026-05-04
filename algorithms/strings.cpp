@@ -2,6 +2,8 @@
 
 using namespace std;
 
+// Computes the KMP prefix function in O(n).
+// pi[i] stores the longest proper prefix that is also a suffix.
 vector<int> prefix_function(const string &pat)
 {
     int n = (int)pat.size();
@@ -22,6 +24,8 @@ vector<int> prefix_function(const string &pat)
     return pi;
 }
 
+// Counts occurrences of `pat` in `txt` using KMP.
+// Reuses the prefix function on `pat + '$' + txt`.
 int kmp(const string &pat, const string &txt)
 {
     int ans = 0;
@@ -38,6 +42,8 @@ int kmp(const string &pat, const string &txt)
     return ans;
 }
 
+// Returns the lengths of prefixes that are also proper suffixes.
+// Follows the prefix-function chain to collect them.
 vector<int> aps(const string &s)
 {
     int n = s.size();

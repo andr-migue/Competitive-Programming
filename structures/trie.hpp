@@ -4,6 +4,8 @@ using namespace std;
 
 namespace structures
 {
+    // Trie for lowercase strings.
+    // Supports insertion, search, prefix queries, and lexicographic output.
     class trie
     {
     public:

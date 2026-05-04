@@ -5,6 +5,8 @@ using namespace std;
 namespace structures
 {
 
+    // Segment tree for maximum subarray sum queries.
+    // Each node stores sum, prefix, suffix, and best answer.
     class segment_tree_struct
     {
     public:

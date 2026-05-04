@@ -3,6 +3,8 @@ using namespace std;
 
 namespace structures
 {
+    // Segment tree for range sum queries.
+    // Supports point updates and interval queries in O(log n).
     class segment_tree
     {
     public:

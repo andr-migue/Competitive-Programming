@@ -4,6 +4,8 @@ using namespace std;
 
 namespace structures 
 {
+    // Undirected graph stored as adjacency lists.
+    // Provides O(1) access to neighbors through `operator[]`.
     class list_graph
     {
     public:
@@ -50,6 +52,8 @@ namespace structures
         }
     };
     
+    // Undirected graph stored as an adjacency matrix.
+    // Uses 1 to mark the presence of an edge.
     class matrix_graph
     {
     public:

@@ -6,10 +6,14 @@ using namespace std;
 
 namespace structures 
 {
+    // Basic heap aliases plus indexed heap variants.
+    // Useful when elements need fast priority updates or removals.
     typedef priority_queue<int, vector<int>, greater<int>> minHeap;
     typedef priority_queue<int> maxHeap;
     typedef priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pair_min_heap;
     
+    // Min-heap with O(log n) erase by value.
+    // Stores unique integers and tracks their positions.
     class indexed_minheap
     {
         vector<int> heap;
@@ -90,6 +94,8 @@ namespace structures
         }
     };
 
+    // Min-heap for weighted edges with O(log n) erase by edge.
+    // Keeps the edge endpoints as the lookup key.
     class indexed_ponderaded_minheap
     {
         struct pair_hash
@@ -204,6 +210,8 @@ namespace structures
         }
     };
 
+    // Online median structure using two heaps.
+    // Inserts are O(log n) and the median is available in O(1).
     class online_median
     {
     private:

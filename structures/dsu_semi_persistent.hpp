@@ -3,6 +3,8 @@ using namespace std;
 
 namespace structures
 {
+    // Semi-persistent DSU that supports rollback of the latest merges.
+    // Keeps a history stack to undo changes in reverse order.
     class dsu_semi_persistent
     {
     public:

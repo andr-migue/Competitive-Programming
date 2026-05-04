@@ -3,6 +3,8 @@
 
 using namespace std;
 
+// BFS from `start` to compute minimum distances in number of edges.
+// Traverses the graph level by level using a queue.
 void bfs(structures::list_graph &graph, int start)
 {
     vector<int> dist(graph.size(), INT_MAX);

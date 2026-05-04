@@ -3,6 +3,8 @@ using namespace std;
 
 namespace structures
 {
+    // Disjoint set union with path compression and union by size.
+    // Supports connectivity queries and efficient merges.
     class dsu
     {
     public:

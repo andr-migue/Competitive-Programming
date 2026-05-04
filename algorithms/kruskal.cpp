@@ -9,6 +9,8 @@ struct Edge
     int u, v, w;
 };
 
+// Builds a minimum spanning tree with Kruskal and DSU.
+// Returns the resulting graph with the chosen edges.
 ponderaded_list_graph kruskal(vector<Edge> graph, int nodes)
 {
     ponderaded_list_graph ans(nodes);

@@ -4,6 +4,8 @@ using namespace std;
 
 namespace structures
 {
+    // Binary trie for integer values.
+    // Supports insert, erase, search, and xor queries.
     class binary_trie
     {
     public:

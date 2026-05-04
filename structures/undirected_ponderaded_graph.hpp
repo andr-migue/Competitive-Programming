@@ -5,6 +5,8 @@ using namespace std;
 
 namespace structures 
 {
+    // Undirected weighted graph stored as adjacency lists.
+    // Each edge stores the destination and its weight.
     class ponderaded_list_graph
     {
     public:
@@ -51,6 +53,8 @@ namespace structures
         }
     };
     
+    // Undirected weighted graph stored as an adjacency matrix.
+    // The matrix stores the edge weight between both endpoints.
     class ponderaded_matrix_graph
     {
     public:

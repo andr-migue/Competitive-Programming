@@ -4,6 +4,8 @@ using namespace std;
 
 namespace structures 
 {
+    // Directed graph stored as adjacency lists.
+    // Useful for traversals and graph algorithms on sparse graphs.
     class directed_list_graph
     {
     public:
@@ -49,6 +51,8 @@ namespace structures
         }
     };
 
+    // Directed graph stored as an adjacency matrix.
+    // Uses 1 to mark a directed edge from `u` to `v`.
     class directed_matrix_graph
     {
     public:

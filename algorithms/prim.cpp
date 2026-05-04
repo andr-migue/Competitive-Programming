@@ -4,6 +4,8 @@
 using namespace std;
 using namespace structures;
 
+// Builds a minimum spanning tree with Prim starting from node 0.
+// Uses an edge heap and returns the resulting graph.
 ponderaded_list_graph prim(const ponderaded_list_graph& graph, int nodes)
 {
     ponderaded_list_graph ans(nodes);

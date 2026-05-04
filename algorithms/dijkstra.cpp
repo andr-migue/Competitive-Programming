@@ -3,6 +3,8 @@
 
 using namespace std;
 
+// Dijkstra for minimum distances from node 0.
+// Works on a directed weighted graph with non-negative weights.
 vector<int> dijkstra(structures::directed_ponderaded_list_graph &graph)
 {
     int n = graph.size();

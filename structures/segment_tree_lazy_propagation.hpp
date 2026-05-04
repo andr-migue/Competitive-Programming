@@ -3,6 +3,8 @@ using namespace std;
 
 namespace structures
 {
+    // Segment tree with lazy propagation for range additions.
+    // Queries a single position after applying deferred updates.
     class segment_tree_lazy
     {
     public:

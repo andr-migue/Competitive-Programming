@@ -5,6 +5,8 @@ using namespace std;
 
 namespace structures 
 {
+    // Directed weighted graph stored as adjacency lists.
+    // Each entry keeps the destination node and the edge weight.
     class directed_ponderaded_list_graph
     {
     public:
@@ -50,6 +52,8 @@ namespace structures
         }
     };
     
+    // Directed weighted graph stored as an adjacency matrix.
+    // The matrix stores the weight of the edge from `u` to `v`.
     class directed_ponderaded_matrix_graph
     {
     public:
