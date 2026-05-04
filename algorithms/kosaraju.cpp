@@ -68,8 +68,6 @@ vector<int> assign(structures::directed_list_graph &T_graph, int n, stack<int> S
     return comp;
 }
 
-
-
 structures::directed_list_graph build_t_graph(const structures::directed_list_graph &graph, int n)
 {
     structures::directed_list_graph T_graph(n);
@@ -90,7 +88,7 @@ structures::directed_list_graph build_t_graph(const structures::directed_list_gr
 vector<int> kosaraju(structures::directed_list_graph &graph)
 {
     int n = graph.size();
-    stack S = build_stack(graph, n);
+    stack<int> S = build_stack(graph, n);
     auto T_graph = build_t_graph(graph, n);
     auto comp = assign(T_graph, n, S);
 
