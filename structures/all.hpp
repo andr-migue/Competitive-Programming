@@ -1,4 +1,5 @@
 #include "undirected_graph.hpp"
+#include "directed_graph.hpp"
 #include "dsu_path_compression.hpp"
 #include "binary_trie.hpp"
 #include "dsu_semi_persistent.hpp"
