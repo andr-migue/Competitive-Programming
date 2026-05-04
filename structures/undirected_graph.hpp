@@ -63,6 +63,17 @@ namespace structures
             edges = 0;
             matrix.resize(n, vector<int>(n, 0));
         }
+
+        void add()
+        {
+            for (auto &row : matrix)
+            {
+                row.push_back(0);
+            }
+
+            n++;
+            matrix.push_back(vector<int>(n, 0));
+        }
     
         void connect(int u, int v)
         {

@@ -8,6 +8,7 @@ namespace structures
 {
     typedef priority_queue<int, vector<int>, greater<int>> minHeap;
     typedef priority_queue<int> maxHeap;
+    typedef priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pair_min_heap;
     
     class indexed_minheap
     {

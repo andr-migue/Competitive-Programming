@@ -5,14 +5,14 @@ using namespace std;
 
 namespace structures 
 {
-    class ponderaded_list_graph
+    class directed_ponderaded_list_graph
     {
     public:
         int n;
         int edges;
         vector<vector<tuple<int, int>>> list;
     
-        ponderaded_list_graph(int nodes = 0)
+        directed_ponderaded_list_graph(int nodes = 0)
         {
             n = nodes;
             edges = 0;
@@ -30,7 +30,6 @@ namespace structures
             if (u < n && v < n)
             {
                 list[u].push_back({v, w});
-                list[v].push_back({u, w});
                 edges++;
             }
         }
@@ -51,20 +50,20 @@ namespace structures
         }
     };
     
-    class ponderaded_matrix_graph
+    class directed_ponderaded_matrix_graph
     {
     public:
         int n;
         int edges;
         vector<vector<int>> matrix;
     
-        ponderaded_matrix_graph(int nodes)
+        directed_ponderaded_matrix_graph(int nodes = 0)
         {
             n = nodes;
             edges = 0;
             matrix.resize(n, vector<int>(n, 0));
         }
-
+    
         void add()
         {
             for (auto &row : matrix)
@@ -80,9 +79,12 @@ namespace structures
         {
             if (u < n && v < n)
             {
+                if (matrix[u][v] == 0)
+                {
+                    edges++;
+                }
+
                 matrix[u][v] = w;
-                matrix[v][u] = w;
-                edges++;
             }
         }
 
