@@ -2,17 +2,18 @@
 #include "../structures/all.hpp"
 
 using namespace std;
+using namespace structures;
 
 // Dijkstra for minimum distances from node 0.
 // Works on a directed weighted graph with non-negative weights.
-vector<int> dijkstra(structures::directed_ponderaded_list_graph &graph)
+vector<int> dijkstra(directed_ponderaded_list_graph &graph)
 {
     int n = graph.size();
     vector<int> distances(n, INT_MAX);
     
     distances[0] = 0;
 
-    structures::pair_min_heap heap; // {distance, node}
+    pair_min_heap heap; // {distance, node}
     heap.push({0, 0});
 
     while (heap.size() != 0)

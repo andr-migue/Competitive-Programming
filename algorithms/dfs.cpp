@@ -2,10 +2,11 @@
 #include "../structures/undirected_graph.hpp"
 
 using namespace std;
+using namespace structures;
 
 // Recursive DFS to traverse a graph component.
 // Used by `init` to visit every unreached node.
-void dfs(structures::list_graph graph, vector<bool> visited, int node)
+void dfs(list_graph graph, vector<bool> visited, int node)
 {
     visited[node] = true;
 
@@ -20,7 +21,7 @@ void dfs(structures::list_graph graph, vector<bool> visited, int node)
 
 // Starts DFS from every unvisited node.
 // Used to traverse the whole graph by components.
-void init(structures::list_graph graph)
+void init(list_graph graph)
 {
     int n = graph.size();
     vector<bool> visited(n, false);

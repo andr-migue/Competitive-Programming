@@ -3,8 +3,9 @@
 #include "../structures/all.hpp"
 
 using namespace std;
+using namespace structures;
 
-void dfs_build(structures::directed_list_graph &graph, vector<bool> &visited, int node, stack<int> &S)
+void dfs_build(directed_list_graph &graph, vector<bool> &visited, int node, stack<int> &S)
 {
     visited[node] = true;
 
@@ -19,7 +20,7 @@ void dfs_build(structures::directed_list_graph &graph, vector<bool> &visited, in
     S.push(node);
 }
 
-stack<int> build_stack(structures::directed_list_graph &graph, int n)
+stack<int> build_stack(directed_list_graph &graph, int n)
 {
     vector<bool> visited(n, false);
     stack<int> S;
@@ -35,7 +36,7 @@ stack<int> build_stack(structures::directed_list_graph &graph, int n)
     return S;
 }
 
-void dfs_assign(structures::directed_list_graph &T_graph, vector<int> &comp, int node, int id)
+void dfs_assign(directed_list_graph &T_graph, vector<int> &comp, int node, int id)
 {
     comp[node] = id;
 
@@ -48,7 +49,7 @@ void dfs_assign(structures::directed_list_graph &T_graph, vector<int> &comp, int
     }
 }
 
-vector<int> assign(structures::directed_list_graph &T_graph, int n, stack<int> S)
+vector<int> assign(directed_list_graph &T_graph, int n, stack<int> S)
 {
     int id = 0;
     vector<int> comp(n, -1);
@@ -68,9 +69,9 @@ vector<int> assign(structures::directed_list_graph &T_graph, int n, stack<int> S
     return comp;
 }
 
-structures::directed_list_graph build_t_graph(const structures::directed_list_graph &graph, int n)
+directed_list_graph build_t_graph(const directed_list_graph &graph, int n)
 {
-    structures::directed_list_graph T_graph(n);
+    directed_list_graph T_graph(n);
 
     for (int u = 0; u < n; ++u)
     {
@@ -85,7 +86,7 @@ structures::directed_list_graph build_t_graph(const structures::directed_list_gr
 
 // Kosaraju: two DFS to compute strongly connected components.
 // Returns a vector `comp` of size n where comp[v] is component id (0..k).
-vector<int> kosaraju(structures::directed_list_graph &graph)
+vector<int> kosaraju(directed_list_graph &graph)
 {
     int n = graph.size();
     stack<int> S = build_stack(graph, n);
