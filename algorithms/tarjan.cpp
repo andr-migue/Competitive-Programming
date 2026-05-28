@@ -51,3 +51,18 @@ vector<pair<int, int>> tarjan(list_graph &graph)
 
     return bridges;
 }
+
+pair<unordered_set<int>, vector<pair<int, int>>> tarjan_set(list_graph &graph)
+{
+    int n = graph.size();
+    unordered_set<int> bridge_set;
+    vector<pair<int, int>> bridges = tarjan(graph);
+
+    for (auto [u, v] : bridges)
+    {
+        int key = min(u, v) * n + max(u, v);
+        bridge_set.insert(key);
+    }
+
+    return {bridge_set, bridges};
+}
