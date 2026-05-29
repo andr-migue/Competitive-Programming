@@ -33,8 +33,3 @@ int solve(vector<Edge> &graph, int n, int k)
 
     return ans;
 }
-
-signed main()
-{
-    
-}

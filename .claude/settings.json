@@ -3,7 +3,9 @@
     "allow": [
       "Bash(g++ -std=c++17 -o exercise_2_3 exercise_2_3_miguel.cpp)",
       "Bash(./exercise_2_3)",
-      "Bash(grep -v \"^$\")"
+      "Bash(grep -v \"^$\")",
+      "Bash(g++ -std=c++17 -o exercise_4_3 exercise_4_3_miguel.cpp)",
+      "Bash(./exercise_4_3)"
     ]
   }
 }
