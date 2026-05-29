@@ -1,12 +1,37 @@
 #include <bits/stdc++.h>
-#include "../../../../structures/undirected_ponderaded_graph.hpp"
+#include "../../../../algorithms/kruskal.cpp"
+#include "../../../../structures/heap.hpp"
 
 using namespace std;
-using namespace structures;
 
-int solve(ponderaded_list_graph &graph, int n, int k)
+int solve(vector<Edge> &graph, int n, int k)
 {
+    ponderaded_list_graph tree = kruskal(graph, n);
 
+    int ans = 0;
+    maxHeap heap;
+
+    for (int u = 0; u < n; u++)
+        for (auto [v, w] : tree.list[u])
+            if (u < v)
+                heap.push(w);
+
+    while (!heap.empty())
+    {
+        if (k - 1 > 0)
+        {
+            heap.pop();
+        }
+        else 
+        {
+            ans += heap.top();
+            heap.pop();
+        }
+
+        k--;
+    }
+
+    return ans;
 }
 
 signed main()
