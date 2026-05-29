@@ -58,7 +58,6 @@ int solve(int n, const vector<vector<char>> &board, pair<int, int> start, pair<i
     return -1;
 }
 
-int main()
+signed main()
 {
-    return 0;
 }

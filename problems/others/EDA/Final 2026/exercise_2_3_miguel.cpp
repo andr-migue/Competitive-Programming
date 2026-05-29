@@ -115,7 +115,7 @@ public:
     }
 };
 
-int main()
+signed main()
 {
     list_graph g(6);
     g.connect(0, 1);
@@ -130,6 +130,4 @@ int main()
     cout << "CantPuentes(0, 5) = " << bt.count_bridges(0, 5) << "\n";
     cout << "CantPuentes(3, 4) = " << bt.count_bridges(3, 4) << "\n";
     cout << "CantPuentes(0, 4) = " << bt.count_bridges(0, 4) << "\n";
-
-    return 0;
 }
