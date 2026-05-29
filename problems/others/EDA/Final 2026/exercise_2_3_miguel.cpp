@@ -111,7 +111,7 @@ public:
         int cb = components[b];
         int l  = lca(ca, cb);
 
-        return depth[ca] + depth[cb] - 2 * depth[l];
+        return (depth[ca] - depth[l]) + (depth[cb] - depth[l]);
     }
 };
 
