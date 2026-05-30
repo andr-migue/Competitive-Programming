@@ -31,8 +31,11 @@ vector<bool> solve(int n, vector<pair<int,int>> &clauses)
         int u = lit_to_node(lit_u);
         int v = lit_to_node(lit_v);
 
-        graph.connect(u ^ 1, v);
-        graph.connect(v ^ 1, u);
+        int not_u = lit_to_node(-lit_u);
+        int not_v = lit_to_node(-lit_v);
+
+        graph.connect(not_u, v);
+        graph.connect(not_v, u);
     }
 
     vector<int> comp = kosaraju(graph);
