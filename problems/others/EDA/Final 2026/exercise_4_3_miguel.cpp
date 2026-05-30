@@ -26,23 +26,23 @@ vector<bool> solve(int n, vector<pair<int,int>> &clauses)
 {
     directed_list_graph graph(2 * n);
 
-    for (auto [lit_u, lit_v] : clauses)
+    for (auto [a, b] : clauses)
     {
-        int u = lit_to_node(lit_u);
-        int v = lit_to_node(lit_v);
+        int u = lit_to_node(a);
+        int v = lit_to_node(b);
 
-        int not_u = lit_to_node(-lit_u);
-        int not_v = lit_to_node(-lit_v);
+        int not_u = lit_to_node(-a);
+        int not_v = lit_to_node(-b);
 
         graph.connect(not_u, v);
         graph.connect(not_v, u);
     }
 
-    vector<int> comp = kosaraju(graph);
+    vector<int> components = kosaraju(graph);
 
     for (int i = 0; i < n; i++)
     {
-        if (comp[2 * i] == comp[2 * i + 1])
+        if (components[2 * i] == components[2 * i + 1])
         {
             return {};
         }
@@ -52,7 +52,7 @@ vector<bool> solve(int n, vector<pair<int,int>> &clauses)
     
     for (int i = 0; i < n; i++)
     {
-        assignment[i] = comp[2 * i] > comp[2 * i + 1];
+        assignment[i] = components[2 * i] > components[2 * i + 1];
     }
 
     return assignment;
