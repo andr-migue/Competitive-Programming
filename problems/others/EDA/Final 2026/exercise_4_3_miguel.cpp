@@ -8,8 +8,14 @@ using namespace structures;
 // ¬x_i (negativo) → nodo 2*i + 1
 int lit_to_node(int lit)
 {
-    if (lit > 0) return 2 * (lit - 1);
-    else         return 2 * (-lit - 1) + 1;
+    if (lit > 0)
+    {
+        return 2 * (lit - 1);
+    } 
+    else         
+    {
+        return 2 * (-lit - 1) + 1;
+    }
 }
 
 // Retorna asignación satisfacible, o vacío si es insatisfacible.
@@ -32,13 +38,19 @@ vector<bool> solve(int n, vector<pair<int,int>> &clauses)
     vector<int> comp = kosaraju(graph);
 
     for (int i = 0; i < n; i++)
+    {
         if (comp[2 * i] == comp[2 * i + 1])
+        {
             return {};
+        }
+    }
 
     vector<bool> assignment(n);
     
     for (int i = 0; i < n; i++)
+    {
         assignment[i] = comp[2 * i] > comp[2 * i + 1];
+    }
 
     return assignment;
 }

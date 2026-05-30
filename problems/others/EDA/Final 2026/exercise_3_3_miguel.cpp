@@ -12,9 +12,15 @@ int solve(vector<Edge> &graph, int n, int k)
     maxHeap heap;
 
     for (int u = 0; u < n; u++)
+    {
         for (auto [v, w] : tree.list[u])
+        {
             if (u < v)
-                heap.push(w);
+            {
+                heap.push(w);        
+            }
+        }
+    }
 
     while (!heap.empty())
     {
