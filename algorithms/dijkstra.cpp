@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#include <tuple>
 #include "../structures/all.hpp"
 
 using namespace std;
@@ -8,13 +9,14 @@ using namespace structures;
 // Works on a directed weighted graph with non-negative weights.
 // Returns {distances, previous} where previous[v] is the predecessor of v
 // on the shortest path from start (-1 if v is start or unreachable).
-pair<vector<int>, vector<int>> dijkstra(directed_ponderaded_list_graph &graph, int start)
+tuple<vector<int>, vector<int>, int> dijkstra(directed_ponderaded_list_graph &graph, int start)
 {
     int n = graph.size();
     vector<int> distances(n, INT_MAX);
     vector<int> previous(n, -1);
 
     distances[start] = 0;
+    int max_distance = 0;
 
     pair_min_heap heap; // {distance, node}
     heap.push({0, start});
@@ -36,9 +38,11 @@ pair<vector<int>, vector<int>> dijkstra(directed_ponderaded_list_graph &graph, i
                 distances[adj] = distances[node] + weight;
                 previous[adj] = node;
                 heap.push({distances[adj], adj});
+
+                max_distance = max(max_distance, distances[adj]);
             }
         }
     }
 
-    return {distances, previous};
+    return {distances, previous, max_distance};
 }
