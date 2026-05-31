@@ -4,7 +4,7 @@
 using namespace std;
 using namespace structures;
 
-// DFS over the residual graph; returns the bottleneck of the path found, -1 if none.
+// DFS over the residual graph; returns the bottleneck of the path found, -1 if none
 int dfs(int node, int t, int flow, vector<unordered_map<int, int>> &res, vector<bool> &visited)
 {
     if (node == t) return flow;
@@ -16,7 +16,7 @@ int dfs(int node, int t, int flow, vector<unordered_map<int, int>> &res, vector<
         if (!visited[adj] && capacity > 0)
         {
             int bottleneck = dfs(adj, t, min(flow, capacity), res, visited);
-            
+
             if (bottleneck != -1)
             {
                 res[node][adj] -= bottleneck;
