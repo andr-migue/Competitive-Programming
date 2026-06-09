@@ -1,19 +1,26 @@
 #include <bits/stdc++.h>
-#include "../../../../algorithms/dijkstra.cpp"
+#include "../../../../algorithms/floyd_warshall.cpp"
 
 using namespace std;
+using namespace structures;
 
-int solve(directed_ponderaded_list_graph &graph, int n)
+int solve(directed_ponderaded_matrix_graph &graph, int n)
 {
-    pair_min_heap heap;
+    vector<vector<int>> dist = floyd_warshall(graph);
 
-    for (int i = 0; i < n; i++)
+    int best_node = 0;
+    int best_ecc  = INT_MAX;
+
+    for (int v = 0; v < n; v++)
     {
-        auto [distances, previous, max_distance] = dijkstra(graph, i);
-        heap.push({max_distance, i});
+        int ecc = *max_element(dist[v].begin(), dist[v].end());
+
+        if (ecc < best_ecc)
+        {
+            best_ecc  = ecc;
+            best_node = v;
+        }
     }
 
-    auto [max_distance, node] = heap.top();
-
-    return node;
+    return best_node;
 }
