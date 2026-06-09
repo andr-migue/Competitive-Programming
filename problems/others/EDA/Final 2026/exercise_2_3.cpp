@@ -60,23 +60,6 @@ private:
         }
     }
 
-    int lca(int a, int b)
-    {
-        while (depth[a] > depth[b]) 
-            a = parent[a];
-
-        while (depth[b] > depth[a]) 
-            b = parent[b];
-
-        while (a != b) 
-        { 
-            a = parent[a]; 
-            b = parent[b]; 
-        }
-
-        return a;
-    }
-
 public:
     bridge_tree(list_graph &graph)
     {
@@ -109,8 +92,17 @@ public:
     {
         int ca = components[a];
         int cb = components[b];
-        int l  = lca(ca, cb);
+        int steps = 0;
 
-        return (depth[ca] - depth[l]) + (depth[cb] - depth[l]);
+        while (ca != cb)
+        {
+            if (depth[ca] >= depth[cb])
+                ca = parent[ca];
+            else
+                cb = parent[cb];
+            steps++;
+        }
+
+        return steps;
     }
 };
