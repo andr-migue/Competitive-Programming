@@ -1,15 +1,12 @@
 #include <bits/stdc++.h>
+#include "../../../../structures/undirected_graph.hpp"
 
 using namespace std;
-
-bool is_valid(int n, int i, int j)
-{
-    return 0 <= i && i < n && 0 <= j && j < n;
-}
+using namespace structures;
 
 int solve(int n, const vector<vector<char>> &board, pair<int, int> start, pair<int, int> end)
 {
-    if (start == end) 
+    if (start == end)
     {
         return 0;
     }
@@ -17,40 +14,68 @@ int solve(int n, const vector<vector<char>> &board, pair<int, int> start, pair<i
     auto [start_i, start_j] = start;
     auto [end_i, end_j] = end;
 
-    vector<vector<int>> dist(n, vector<int>(n, -1));
-    queue<pair<int,int>> bfs_q;
+    vector<vector<int>> diag1(n, vector<int>(n, -1));
+    vector<vector<int>> diag2(n, vector<int>(n, -1));
+    int seg_count = 0;
 
-    dist[start_i][start_j] = 0;
-    bfs_q.push({start_i, start_j});
-
-    vector<int> dir_i = {1,  1, -1, -1};
-    vector<int> dir_j = {1, -1,  1, -1};
-
-    while (!bfs_q.empty()) 
+    for (int i = 0; i < n; i++)
     {
-        auto [i, j] = bfs_q.front(); 
-        bfs_q.pop();
-        
-        int new_d = dist[i][j] + 1;
-
-        for (int d = 0; d < 4; ++d) 
+        for (int j = 0; j < n; j++)
         {
-            int new_i = i + dir_i[d];
-            int new_j = j + dir_j[d];
+            if (board[i][j] == 'P') continue;
 
-            while (is_valid(n, new_i, new_j) && board[new_i][new_j] == '.' && dist[new_i][new_j] == -1) 
+            if (i > 0 && j > 0 && diag1[i - 1][j - 1] != -1)
+                diag1[i][j] = diag1[i - 1][j - 1];
+            else
+                diag1[i][j] = seg_count++;
+
+            if (i > 0 && j < n - 1 && diag2[i - 1][j + 1] != -1)
+                diag2[i][j] = diag2[i - 1][j + 1];
+            else
+                diag2[i][j] = seg_count++;
+        }
+    }
+
+    list_graph graph(n * n + seg_count);
+
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            if (board[i][j] == 'P') continue;
+
+            int cell = i * n + j;
+            graph.connect(cell, n * n + diag1[i][j]);
+            graph.connect(cell, n * n + diag2[i][j]);
+        }
+    }
+
+    int start_node = start_i * n + start_j;
+    int end_node   = end_i * n + end_j;
+
+    vector<int> dist(graph.size(), -1);
+    queue<int>  bfs_q;
+
+    dist[start_node] = 0;
+    bfs_q.push(start_node);
+
+    while (!bfs_q.empty())
+    {
+        int node = bfs_q.front();
+        bfs_q.pop();
+
+        for (int adj : graph[node])
+        {
+            if (dist[adj] == -1)
             {
-                dist[new_i][new_j] = new_d;
-                
-                if (new_i == end_i && new_j == end_j)
+                dist[adj] = dist[node] + 1;
+
+                if (adj == end_node)
                 {
-                    return dist[new_i][new_j];
+                    return dist[adj] / 2;
                 }
 
-                bfs_q.push({new_i, new_j});
-
-                new_i += dir_i[d];
-                new_j += dir_j[d];
+                bfs_q.push(adj);
             }
         }
     }
