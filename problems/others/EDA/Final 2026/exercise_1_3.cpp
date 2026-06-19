@@ -16,7 +16,7 @@ int solve(int n, const vector<vector<char>> &board, pair<int, int> start, pair<i
 
     vector<vector<int>> diag1(n, vector<int>(n, -1));
     vector<vector<int>> diag2(n, vector<int>(n, -1));
-    int seg_count = 0;
+    int count = 0;
 
     for (int i = 0; i < n; i++)
     {
@@ -27,16 +27,16 @@ int solve(int n, const vector<vector<char>> &board, pair<int, int> start, pair<i
             if (i > 0 && j > 0 && diag1[i - 1][j - 1] != -1)
                 diag1[i][j] = diag1[i - 1][j - 1];
             else
-                diag1[i][j] = seg_count++;
+                diag1[i][j] = count++;
 
             if (i > 0 && j < n - 1 && diag2[i - 1][j + 1] != -1)
                 diag2[i][j] = diag2[i - 1][j + 1];
             else
-                diag2[i][j] = seg_count++;
+                diag2[i][j] = count++;
         }
     }
 
-    list_graph graph(n * n + seg_count);
+    list_graph graph(n * n + count);
 
     for (int i = 0; i < n; i++)
     {
